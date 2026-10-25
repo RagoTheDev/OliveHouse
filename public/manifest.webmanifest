@@ -1,0 +1,13 @@
+{
+  "name": "Olive House — Kigamboni",
+  "short_name": "Olive House",
+  "description": "A peaceful two-bedroom holiday home in Kigamboni, Dar es Salaam.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6f3eb",
+  "theme_color": "#454d37",
+  "icons": [
+    { "src": "/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

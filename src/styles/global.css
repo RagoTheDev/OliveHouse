@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Olive House design tokens                                          */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-olive-950: #1f2419;
+  --color-olive-900: #2c3122;
+  --color-olive-800: #353c2a;
+  --color-olive: #454d37;
+  --color-olive-600: #5c6549;
+  --color-sage: #a8b19a;
+  --color-sage-light: #c9cfbe;
+  --color-sand: #d9c8ad;
+  --color-sand-light: #e9dfcc;
+  --color-ivory: #f6f3eb;
+  --color-ivory-light: #fbf9f4;
+  --color-charcoal: #252722;
+  --color-terracotta: #b77c62;
+  --color-terracotta-deep: #9d6349;
+  --color-brick: #a4573f;
+
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", "Times New Roman", serif;
+  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 112rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --gutter: clamp(1rem, 4vw, 3.5rem);
+    --header-h: 4.5rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ivory text-charcoal font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-sage);
+    color: var(--color-olive-950);
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif font-normal;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  p { text-wrap: pretty; }
+
+  img { display: block; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  button, a { touch-action: manipulation; }
+
+  /* Lenis */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    padding-inline: var(--gutter);
+    width: 100%;
+    max-width: 100rem;
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.7rem] font-medium uppercase tracking-[0.22em];
+  }
+
+  .display-xl {
+    font-size: clamp(3.3rem, 8.5vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .display-lg {
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .display-md {
+    font-size: clamp(2rem, 4.2vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+  .display-sm {
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    line-height: 1.15;
+  }
+  .lede {
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+    line-height: 1.6;
+  }
+
+  /* Underline animation used by nav & inline links */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after,
+  .link-underline[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .hairline { border-color: color-mix(in oklab, var(--color-charcoal) 14%, transparent); }
+  .hairline-light { border-color: color-mix(in oklab, var(--color-ivory) 18%, transparent); }
+
+  /* Image hover zoom */
+  .img-zoom img { transition: transform 1.2s var(--ease-out-expo); will-change: transform; }
+  @media (hover: hover) {
+    .img-zoom:hover img { transform: scale(1.04); }
+  }
+
+  /* Reveal primitives (GSAP sets final state; this hides before JS) */
+  .js [data-reveal] { opacity: 0; }
+  .js [data-reveal-clip] { clip-path: inset(0 0 100% 0); }
+  .js [data-reveal-clip="left"] { clip-path: inset(0 100% 0 0); }
+  .js .split-line { overflow: hidden; display: block; }
+  .js .split-word { display: inline-block; transform: translateY(110%); will-change: transform; }
+
+  .no-js [data-reveal], .no-js [data-reveal-clip] { opacity: 1; clip-path: none; }
+}
+
+/* Day picker theming (doubled selector beats the library stylesheet, which loads later) */
+.rdp-root.rdp-root {
+  --rdp-accent-color: var(--color-olive);
+  --rdp-accent-background-color: color-mix(in oklab, var(--color-sage) 35%, transparent);
+  --rdp-range_start-color: var(--color-ivory);
+  --rdp-range_end-color: var(--color-ivory);
+  --rdp-range_middle-background-color: color-mix(in oklab, var(--color-sage) 35%, transparent);
+  --rdp-range_start-date-background-color: var(--color-olive);
+  --rdp-range_end-date-background-color: var(--color-olive);
+  --rdp-day-height: 2.6rem;
+  --rdp-day-width: 2.6rem;
+  --rdp-day_button-height: 2.5rem;
+  --rdp-day_button-width: 2.5rem;
+  --rdp-day_button-border-radius: 999px;
+  --rdp-today-color: var(--color-terracotta);
+  --rdp-selected-border: 1px solid var(--color-olive);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+@media (max-width: 23.5rem) {
+  .rdp-root.rdp-root {
+    --rdp-day-height: 2.25rem;
+    --rdp-day-width: 2.25rem;
+    --rdp-day_button-height: 2.15rem;
+    --rdp-day_button-width: 2.15rem;
+    font-size: 0.85rem;
+  }
+}
+.rdp-month_caption { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 500; }
+.rdp-weekday { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; font-weight: 500; }
+.rdp-disabled { opacity: 0.3; }
+.rdp-chevron { fill: var(--color-olive); }
+
+/* Leaflet overrides */
+.leaflet-container.leaflet-container { font-family: var(--font-sans); background: var(--color-sand-light); }
+.leaflet-tile-pane { filter: saturate(0.55) sepia(0.18) contrast(0.95) brightness(1.03); }
+.leaflet-control-attribution { font-size: 10px; background: color-mix(in oklab, var(--color-ivory) 85%, transparent) !important; }
+.leaflet-control-zoom a { color: var(--color-olive) !important; border-color: var(--color-sand) !important; }
+
+@keyframes scrollhint {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(220%); }
+}
