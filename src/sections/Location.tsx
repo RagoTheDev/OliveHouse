@@ -1,12 +1,10 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { nearby, approximateArea } from "@/data/property";
 import { config } from "@/lib/config";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { GoogleMap } from "@/components/location/GoogleMap";
 import { Reveal } from "@/components/animations/Reveal";
 import { SplitWords } from "@/components/animations/SplitWords";
-
-const LeafletMap = lazy(() => import("@/components/location/LeafletMap"));
 
 const mapsUrl =
   config.googleMapsUrl ??
@@ -15,26 +13,6 @@ const mapsUrl =
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(approximateArea.label)}`);
 
 export function Location() {
-  const mapWrap = useRef<HTMLDivElement>(null);
-  const [mount, setMount] = useState(false);
-
-  // Only load Leaflet (and OSM tiles) when the map is near the viewport.
-  useEffect(() => {
-    const el = mapWrap.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setMount(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "400px 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <section id="location" className="bg-olive-900 py-24 text-ivory md:py-36" aria-labelledby="location-heading">
       <div className="container-x">
@@ -69,19 +47,9 @@ export function Location() {
 
           <div className="md:col-span-7 md:col-start-6">
             <Reveal y={40}>
-              <div
-                ref={mapWrap}
-                className="relative aspect-[4/3] w-full overflow-hidden bg-olive-800 md:aspect-[4/4.6] lg:aspect-[4/3.6]"
-                data-lenis-prevent
-              >
-                {mount ? (
-                  <Suspense fallback={<MapFallback />}>
-                    <LeafletMap />
-                  </Suspense>
-                ) : (
-                  <MapFallback />
-                )}
-                <div className="pointer-events-none absolute left-4 top-4 z-[500] rounded-full bg-ivory/90 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-olive-900 backdrop-blur">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-olive-800 md:aspect-[4/4.6] lg:aspect-[4/3.6]" data-lenis-prevent>
+                <GoogleMap />
+                <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-olive-900 backdrop-blur">
                   {config.mapPin ? "Olive House" : "Approximate area · Kigamboni"}
                 </div>
               </div>
@@ -104,10 +72,3 @@ export function Location() {
   );
 }
 
-function MapFallback() {
-  return (
-    <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_50%_50%,rgba(168,177,154,0.25),transparent_60%)]" aria-hidden="true">
-      <span className="eyebrow text-sand/60">Loading map…</span>
-    </div>
-  );
-}

@@ -1,6 +1,6 @@
 # Olive House — Kigamboni, Dar es Salaam
 
-A production-ready marketing and booking-inquiry website for **Olive House**, a two-bedroom holiday home in Kigamboni, Dar es Salaam, Tanzania. Built with Vite, React 19, TypeScript and Tailwind CSS v4, with GSAP + Lenis for motion and a code-split gallery, map and booking flow.
+A production-ready marketing and booking-inquiry website for **Olive House**, a two-bedroom holiday home in Kigamboni, Dar es Salaam, Tanzania. Built with Vite, React 19, TypeScript and Tailwind CSS v4, with GSAP + Lenis for motion, an embedded Google map, and a code-split gallery and booking flow.
 
 Official listing: <https://www.airbnb.com/rooms/1759153791039194505>
 
@@ -34,7 +34,7 @@ All values are optional; the site degrades gracefully when one is missing.
 | `VITE_WHATSAPP_NUMBER` | WhatsApp number in international format, digits only (e.g. `255712345678`). When set, the booking form offers "Send via WhatsApp" and the footer shows a WhatsApp link. When empty, inquiries continue on Airbnb. |
 | `VITE_CONTACT_EMAIL` | Optional e-mail address; adds a "Send by e-mail" option and a footer link. |
 | `VITE_AIRBNB_URL` | Airbnb listing URL (defaults to the Olive House listing). |
-| `VITE_MAP_LAT` / `VITE_MAP_LNG` | Precise map pin. Leave blank to show a dashed "approximate area" circle over Kigamboni instead. When set, the coordinates are also added to the Schema.org data and geo meta tags at build time. |
+| `VITE_MAP_LAT` / `VITE_MAP_LNG` | Precise map pin for the embedded Google map. Leave blank to centre the map on Kigamboni generally. When set, the coordinates are also added to the Schema.org data and geo meta tags at build time. |
 | `VITE_GOOGLE_MAPS_URL` | The house's Google Maps place link, used by "Open in Google Maps". Falls back to a search link. |
 
 Environment variables are read at build time, so rebuild after changing them.
@@ -94,7 +94,7 @@ Measured with Lighthouse 12 against `npm run preview` on the home page:
 | Mobile (simulated 4G) | 91 | 100 | 100 | 100 |
 | Desktop | 100 | 100 | 100 | 100 |
 
-Images are served as responsive WebP with width/height set (no layout shift), the hero is preloaded, below-the-fold images lazy-load, and the lightbox, Leaflet map and booking page are separate chunks loaded on demand.
+Images are served as responsive WebP with width/height set (no layout shift), the hero is preloaded, below-the-fold images and the Google map embed lazy-load, and the lightbox and booking page are separate chunks loaded on demand.
 
 ## SEO
 
@@ -119,7 +119,7 @@ src/
     booking/             BookingForm, DateRangeField, GuestStepper, schema
     gallery/             Lightbox (code-split), RoomCarousel (Embla)
     layout/              SmoothScroll, ScrollManager, PageTransition, Footer, Seo, StickyBookingBar
-    location/            LeafletMap (code-split)
+    location/            GoogleMap (keyless embed)
     navigation/          Header, MobileMenu
     ui/                  Button (magnetic), Picture (responsive), Eyebrow, Wordmark, BrandIcons
   data/                  property, gallery, reviews, navigation, images.generated
@@ -133,5 +133,5 @@ src/
 ## Notes on accuracy
 
 - Every amenity shown was verified against the Airbnb listing. The site also states what is *not* provided (no air conditioning, no TV) so guests arrive with the right expectations.
-- The map shows a general Kigamboni area unless precise coordinates are supplied via `.env` (they are, in the owner's local `.env`).
+- The embedded Google map centres on the house when coordinates are supplied via `.env`, otherwise on Kigamboni generally.
 - No fabricated reviews, availability or confirmations.

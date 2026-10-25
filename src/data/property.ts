@@ -173,9 +173,6 @@ export const nearby: NearbyPlace[] = [
  * through VITE_MAP_LAT / VITE_MAP_LNG. Deliberately approximate.
  */
 export const approximateArea = {
-  lat: -6.83,
-  lng: 39.312,
-  radiusMeters: 1400,
   zoom: 13,
   label: "Kigamboni, Dar es Salaam",
 };

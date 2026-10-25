@@ -199,12 +199,6 @@
 .rdp-disabled { opacity: 0.3; }
 .rdp-chevron { fill: var(--color-olive); }
 
-/* Leaflet overrides */
-.leaflet-container.leaflet-container { font-family: var(--font-sans); background: var(--color-sand-light); }
-.leaflet-tile-pane { filter: saturate(0.55) sepia(0.18) contrast(0.95) brightness(1.03); }
-.leaflet-control-attribution { font-size: 10px; background: color-mix(in oklab, var(--color-ivory) 85%, transparent) !important; }
-.leaflet-control-zoom a { color: var(--color-olive) !important; border-color: var(--color-sand) !important; }
-
 @keyframes scrollhint {
   0% { transform: translateY(-100%); }
   60%, 100% { transform: translateY(220%); }

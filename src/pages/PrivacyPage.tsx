@@ -23,7 +23,7 @@ export default function PrivacyPage() {
               When you send a booking inquiry, the dates and details you enter are placed into a message that opens in WhatsApp or your e-mail app, or are passed to the official Airbnb listing as part of the link. From that point the respective service's privacy policy applies, and the host receives only what you choose to send.
             </p>
             <p>
-              The map on the Location section loads tiles from OpenStreetMap, which receives your IP address and the map area requested, as with any image loaded from a third party. Fonts are loaded from Google Fonts in the same way.
+              The map on the Location section is an embedded Google Map, and the fonts come from Google Fonts. Google receives your IP address and the map area requested when those load, as with any content served by a third party, under Google's own privacy policy.
             </p>
             <p>
               Questions about your data or a stay at {property.name} can be sent to the host through the Airbnb listing.
