@@ -100,7 +100,7 @@ export default defineConfig(({ mode }) => {
   // Custom domain configuration.
   const siteUrl =
     getEnv("VITE_SITE_URL") ||
-    "https://olivehouse.ragolabs.com";
+    "https://olive.lmjhouse.com";
 
   // Optional property map coordinates.
   const lat = Number.parseFloat(getEnv("VITE_MAP_LAT"));

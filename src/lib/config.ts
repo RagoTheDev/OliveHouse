@@ -13,7 +13,7 @@ const lat = Number.parseFloat(clean(env.VITE_MAP_LAT));
 const lng = Number.parseFloat(clean(env.VITE_MAP_LNG));
 
 export const config = {
-  siteUrl: clean(env.VITE_SITE_URL).replace(/\/$/, "") || "https://olivehouse.example.com",
+  siteUrl: clean(env.VITE_SITE_URL).replace(/\/$/, "") || "https://olive.lmjhouse.com",
   airbnbUrl: clean(env.VITE_AIRBNB_URL) || "https://www.airbnb.com/rooms/1759153791039194505",
   whatsappNumber: whatsappDigits.length >= 8 ? whatsappDigits : null,
   contactEmail: clean(env.VITE_CONTACT_EMAIL) || null,
