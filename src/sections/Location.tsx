@@ -49,9 +49,11 @@ export function Location() {
             <Reveal y={40}>
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-olive-800 md:aspect-[4/4.6] lg:aspect-[4/3.6]" data-lenis-prevent>
                 <GoogleMap />
-                <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-olive-900 backdrop-blur">
-                  {config.mapPin ? "Olive House" : "Approximate area · Kigamboni"}
-                </div>
+                {!config.mapPin && (
+                  <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-ivory/90 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] text-olive-900 backdrop-blur">
+                    Approximate area · Kigamboni
+                  </div>
+                )}
               </div>
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[0.8rem] text-sand/90">
                 <p>{config.mapPin ? "Pinned to the house. Open the map for directions." : "The precise address is shared with confirmed guests."}</p>

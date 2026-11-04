@@ -35,7 +35,7 @@ All values are optional; the site degrades gracefully when one is missing.
 | `VITE_CONTACT_EMAIL` | Optional e-mail address; adds a "Send by e-mail" option and a footer link. |
 | `VITE_AIRBNB_URL` | Airbnb listing URL (defaults to the Olive House listing). |
 | `VITE_MAP_LAT` / `VITE_MAP_LNG` | Precise map pin for the embedded Google map. Leave blank to centre the map on Kigamboni generally. When set, the coordinates are also added to the Schema.org data and geo meta tags at build time. |
-| `VITE_GOOGLE_MAPS_URL` | The house's Google Maps place link, used by "Open in Google Maps". Falls back to a search link. |
+| `VITE_GOOGLE_MAPS_URL` | The house's Google Maps place link. Used by "Open in Google Maps" and, together with the pin, to embed the named place (with its "Open in Maps" card) rather than a bare dropped pin. |
 
 Environment variables are read at build time, so rebuild after changing them.
 
