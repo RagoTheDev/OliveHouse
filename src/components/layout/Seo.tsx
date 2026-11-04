@@ -31,9 +31,10 @@ export function Seo({ title, absoluteTitle, description = DEFAULT_DESC, path }: 
   const { pathname } = useLocation();
   const fullTitle =
     absoluteTitle ?? (title ? `${title} · ${property.name}` : "Olive House Dar es Salaam | Holiday Home in Kigamboni");
-  // Static hosts redirect /contact to /contact/; canonical must match the sitemap (no trailing slash).
-  const cleanPath = (path ?? pathname).replace(/\/+$/, "") || "/";
-  const url = `${config.siteUrl}${cleanPath}`;
+  // The static host serves routes at /contact/ (with a 301 from /contact), so the
+  // trailing-slash form is the canonical one and matches the sitemap.
+  const cleanPath = (path ?? pathname).replace(/\/+$/, "");
+  const url = `${config.siteUrl}${cleanPath}/`;
   const image = `${config.siteUrl}/images/og-image.jpg`;
 
   useEffect(() => {

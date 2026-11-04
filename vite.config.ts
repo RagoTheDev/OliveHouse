@@ -22,7 +22,7 @@ function seoFiles(
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     ROUTES.map(
       (route) =>
-        `  <url><loc>${base}${route}</loc><lastmod>${today}</lastmod><changefreq>${
+        `  <url><loc>${base}${route === "/" ? "/" : route + "/"}</loc><lastmod>${today}</lastmod><changefreq>${
           route === "/" ? "weekly" : "monthly"
         }</changefreq><priority>${
           route === "/" ? "1.0" : route === "/privacy" ? "0.3" : "0.8"
@@ -97,7 +97,13 @@ function seoFiles(
         if (route === "/") continue;
         const dir = join(outDir, route.slice(1));
         await mkdir(dir, { recursive: true });
-        await writeFile(join(dir, "index.html"), html);
+        // Stamp the copy with its own canonical / og:url so crawlers that read
+        // the raw HTML see the right URL before JavaScript runs.
+        const url = `${base}${route}/`;
+        const stamped = html
+          .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${url}"`)
+          .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}"`);
+        await writeFile(join(dir, "index.html"), stamped);
       }
       await writeFile(join(outDir, "404.html"), html);
     },
