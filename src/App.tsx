@@ -1,5 +1,5 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ScrollManager } from "@/components/layout/ScrollManager";
@@ -19,6 +19,16 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function Pages() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('redirect');
+    if (redirectPath && redirectPath !== '/') {
+      sessionStorage.removeItem('redirect');
+      navigate(redirectPath, { replace: true });
+    }
+  }, [navigate]);
+
   return (
     <AnimatePresence mode="wait" initial={false}>
       <PageTransition key={location.pathname}>

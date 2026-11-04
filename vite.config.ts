@@ -35,6 +35,25 @@ function seoFiles(
     `Allow: /\n\n` +
     `Sitemap: ${base}/sitemap.xml\n`;
 
+  const notFound =
+    `<!DOCTYPE html>\n` +
+    `<html>\n` +
+    `<head>\n` +
+    `  <meta charset="utf-8">\n` +
+    `  <title>Redirecting...</title>\n` +
+    `  <script>\n` +
+    `    var loc = window.location.pathname;\n` +
+    `    if (loc.length > 1 && loc.substr(-1) === '/') {\n` +
+    `      loc = loc.substr(0, loc.length - 1);\n` +
+    `    }\n` +
+    `    sessionStorage.setItem('redirect', loc);\n` +
+    `    window.location.replace('/');\n` +
+    `  </script>\n` +
+    `</head>\n` +
+    `<body>\n` +
+    `</body>\n` +
+    `</html>\n`;
+
   return {
     name: "olive-seo-files",
 
@@ -70,6 +89,12 @@ function seoFiles(
         type: "asset",
         fileName: "robots.txt",
         source: robots,
+      });
+
+      this.emitFile({
+        type: "asset",
+        fileName: "404.html",
+        source: notFound,
       });
     },
 
