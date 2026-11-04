@@ -13,7 +13,7 @@ const blurbs: Record<string, string> = {
 
 /** Cross-links between the informational pages, excluding the current one. */
 export function RelatedPages() {
-  const { pathname } = useLocation();
+  const pathname = useLocation().pathname.replace(/\/+$/, "") || "/";
   const links = stayPages.filter((p) => p.to !== pathname);
   return (
     <section className="border-t hairline bg-ivory-light py-16 md:py-24" aria-labelledby="related-heading">

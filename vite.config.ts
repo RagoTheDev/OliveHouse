@@ -78,6 +78,29 @@ function seoFiles(
         );
     },
 
+    /**
+     * Static hosts (GitHub Pages) only know index.html at "/". Write a copy of
+     * the built page at <route>/index.html for every route so deep links and
+     * crawlers get a 200 instead of a 404. 404.html stays for unknown paths.
+     */
+    async closeBundle() {
+      const { readFile, writeFile, mkdir } = await import("node:fs/promises");
+      const { join } = await import("node:path");
+      const outDir = join(process.cwd(), "dist");
+      let html: string;
+      try {
+        html = await readFile(join(outDir, "index.html"), "utf8");
+      } catch {
+        return;
+      }
+      for (const route of ROUTES) {
+        if (route === "/") continue;
+        const dir = join(outDir, route.slice(1));
+        await mkdir(dir, { recursive: true });
+        await writeFile(join(dir, "index.html"), html);
+      }
+      await writeFile(join(outDir, "404.html"), html);
+    },
     generateBundle() {
       this.emitFile({
         type: "asset",

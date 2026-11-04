@@ -15,7 +15,8 @@ const DARK_HERO_ROUTES = new Set(["/"]);
 export function Header() {
   const scrolled = useScrolled(40);
   const [open, setOpen] = useState(false);
-  const { pathname, hash } = useLocation();
+  const { pathname: rawPath, hash } = useLocation();
+  const pathname = rawPath.replace(/\/+$/, "") || "/";
   const reduce = useReducedMotion();
   const onDarkHero = DARK_HERO_ROUTES.has(pathname) && !scrolled;
 

@@ -19,7 +19,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const reduce = useReducedMotion();
-  const { pathname } = useLocation();
+  const pathname = useLocation().pathname.replace(/\/+$/, "") || "/";
   const panel = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
   useBodyLock(open);
