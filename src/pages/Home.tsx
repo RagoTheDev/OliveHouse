@@ -12,7 +12,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        description="Olive House is a peaceful two-bedroom holiday home in Kigamboni, Dar es Salaam, five minutes' walk from the beach. Wi-Fi, dedicated workspace, kitchen, free parking, pet-friendly, self check-in."
+        absoluteTitle="Olive House Dar es Salaam | Holiday Home in Kigamboni"
+        description="Olive House is a comfortable two-bedroom holiday home in Dar es Salaam, in the quiet Kigamboni neighbourhood, a short walk from the beach."
         path="/"
       />
       <Hero />

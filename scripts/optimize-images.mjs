@@ -60,9 +60,10 @@ async function main() {
     manifest[name] = { width: srcW, height: srcH, variants, placeholder };
   }
 
-  // Social sharing image (1200x630 JPEG) from the hero if present.
-  if (manifest["hero-exterior"]) {
-    await sharp(path.join(SRC_DIR, files.find((f) => f.startsWith("hero-exterior"))))
+  // Social sharing image (1200x630 JPEG) from the exterior/hero photo if present.
+  const heroFile = files.find((f) => /^(hero-exterior|olive-house-kigamboni-exterior)\./.test(f));
+  if (heroFile) {
+    await sharp(path.join(SRC_DIR, heroFile))
       .rotate()
       .resize(1200, 630, { fit: "cover", position: "centre" })
       .jpeg({ quality: 82 })

@@ -10,7 +10,7 @@ export function FinalCta() {
   return (
     <section className="relative isolate min-h-[85svh] overflow-hidden bg-olive-950 text-ivory" aria-labelledby="cta-heading">
       <ParallaxImage className="absolute inset-0 h-full w-full" amount={14} scale={1.16} reveal={false}>
-        <Picture image="bedroom-one" sizes="100vw" position="center 40%" className="h-full w-full" imgClassName="min-h-full" style={{ aspectRatio: "auto" }} />
+        <Picture image="olive-house-kigamboni-bedroom-one" sizes="100vw" position="center 40%" className="h-full w-full" imgClassName="min-h-full" style={{ aspectRatio: "auto" }} />
       </ParallaxImage>
       <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgba(31,36,25,0.9)_0%,rgba(31,36,25,0.5)_50%,rgba(31,36,25,0.25)_100%)]" />
 

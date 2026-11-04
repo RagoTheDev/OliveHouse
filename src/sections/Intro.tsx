@@ -4,6 +4,7 @@ import { Picture } from "@/components/ui/Picture";
 import { Reveal } from "@/components/animations/Reveal";
 import { SplitWords } from "@/components/animations/SplitWords";
 import { ParallaxImage } from "@/components/animations/ParallaxImage";
+import { Link } from "react-router-dom";
 
 export function Intro() {
   return (
@@ -26,19 +27,30 @@ export function Intro() {
               <p className="eyebrow mt-2 text-olive-600">
                 {property.locality} · {property.city} · {property.country}
               </p>
+              <p className="text-[0.95rem] text-charcoal/75">
+                Read more about the{" "}
+                <Link to="/accommodation-kigamboni" className="link-underline text-charcoal">
+                  accommodation in Kigamboni
+                </Link>{" "}
+                or what a stay in the{" "}
+                <Link to="/holiday-home-kigamboni" className="link-underline text-charcoal">
+                  holiday home
+                </Link>{" "}
+                is like.
+              </p>
             </Reveal>
           </div>
         </div>
 
         <div className="relative mt-16 grid gap-6 md:mt-24 md:grid-cols-12 md:gap-8">
           <ParallaxImage className="md:col-span-8 md:col-start-2" amount={10}>
-            <Picture image="living-room" sizes="(min-width: 768px) 66vw, 100vw" className="h-full" />
+            <Picture image="olive-house-kigamboni-living-room" sizes="(min-width: 768px) 66vw, 100vw" className="h-full" />
           </ParallaxImage>
 
           <div className="relative isolate md:col-span-3 md:col-start-10 md:self-end md:pb-10">
             <div aria-hidden="true" className="absolute -inset-x-4 -bottom-4 top-1/3 -z-10 bg-sand/60 md:-left-10 md:-right-6" />
             <ParallaxImage className="w-3/4 md:w-full" amount={14} scale={1.12}>
-              <Picture image="bedroom-one-detail" sizes="(min-width: 768px) 25vw, 75vw" />
+              <Picture image="olive-house-kigamboni-bedroom-detail" sizes="(min-width: 768px) 25vw, 75vw" />
             </ParallaxImage>
             <Reveal as="p" className="mt-4 font-serif text-lg italic text-olive-800">
               Textured walls, warm lamps, cool green linen.

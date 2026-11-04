@@ -45,19 +45,20 @@ The site only uses real photographs of Olive House. The originals in `photos/` w
 
 | File | Shows |
 | --- | --- |
-| `hero-exterior.jpg` | Front veranda, red gate and timber door (hero + social image) |
-| `living-room.jpg`, `living-room-detail.jpg` | Living room, art wall and macramé curtain |
-| `bedroom-one.jpg`, `bedroom-one-detail.jpg` | Bedroom one (queen bed, en-suite) |
-| `bedroom-two.jpg`, `bedroom-two-detail.jpg` | Bedroom two (double bed) |
-| `kitchen.jpg` | Kitchen |
-| `bathroom.jpg`, `bathroom-shower.jpg`, `bathroom-vanity.jpg`, `detail-shower-gel.jpg` | Bathrooms and bath essentials |
-| `wardrobe.jpg` | Wardrobe storage |
+| `olive-house-kigamboni-exterior.jpg` | Front veranda, red gate and timber door (hero + social image) |
+| `olive-house-kigamboni-living-room.jpg`, `…-living-room-detail.jpg` | Living room, art wall and macramé curtain |
+| `olive-house-kigamboni-bedroom-one.jpg`, `…-bedroom-detail.jpg` | Bedroom one (queen bed, en-suite) |
+| `olive-house-kigamboni-bedroom-two.jpg`, `…-bedroom-two-detail.jpg` | Bedroom two (double bed) |
+| `olive-house-kigamboni-kitchen.jpg` | Kitchen |
+| `olive-house-kigamboni-bathroom.jpg`, `…-bathroom-shower.jpg`, `…-bathroom-vanity.jpg`, `…-bathroom-amenities.jpg` | Bathrooms and bath essentials |
+| `olive-house-kigamboni-wardrobe.jpg` | Wardrobe storage |
 
 ### Adding or replacing photos
 
 1. Drop the original JPEG/PNG/HEIC into `photos/` using a descriptive, lowercase, hyphenated name (e.g. `outdoor-space.jpg`).
 2. Run `npm run images`. This writes `public/images/<name>-{480,768,1080,1440,1920}.webp`, a blurred placeholder, the `og-image.jpg` social card from `hero-exterior`, and regenerates `src/data/images.generated.ts`.
 3. Register the photo in `src/data/gallery.ts` with its alt text, caption and room. Use it anywhere with `<Picture image="outdoor-space" />`.
+4. If you rename a photo, delete its old `public/images/<old-name>-*.webp` outputs; the script only adds files, it never removes them.
 
 Only commit photos that genuinely show the property.
 
@@ -69,6 +70,20 @@ Everything editorial lives in `src/data/` so copy changes never touch components
 - `gallery.ts` — every photo with alt text and caption, plus the curated homepage preview.
 - `reviews.ts` — guest reviews. Only entries with `published: true` render. The one real Airbnb review is included but unpublished until you decide to show it.
 - `navigation.ts` — menu items.
+
+## Pages
+
+| Route | Purpose | Primary keyword |
+| --- | --- | --- |
+| `/` | Introduce the house and brand | Olive House Dar es Salaam |
+| `/accommodation-kigamboni` | Facilities, amenities, practical details and how to get here | Accommodation in Dar es Salaam |
+| `/holiday-home-kigamboni` | The two-bedroom holiday rental experience: who it suits, the rooms, the rhythm of a stay | Holiday home in Dar es Salaam |
+| `/gallery` | Photographs with filters and a lightbox | Olive House photos Dar es Salaam |
+| `/contact` | Contact channels, address, check-in details | Contact Olive House Dar es Salaam |
+| `/book` | Dated booking enquiry form and Airbnb hand-off | Book a holiday home in Dar es Salaam |
+| `/privacy` | Short privacy note | — |
+
+Keyword strategy: Dar es Salaam is the broad destination keyword, Kigamboni the specific neighbourhood, Olive House the brand. Titles lead with the destination and name the neighbourhood. Each page sets its own title, description and canonical (`src/components/layout/Seo.tsx`), all routes are listed in the generated `sitemap.xml`, and the informational pages cross-link through the "Continue exploring" block (`src/components/layout/RelatedPages.tsx`).
 
 ## Booking flow
 
@@ -118,14 +133,14 @@ src/
     animations/          Reveal, SplitWords, ParallaxImage (GSAP)
     booking/             BookingForm, DateRangeField, GuestStepper, schema
     gallery/             Lightbox (code-split), RoomCarousel (Embla)
-    layout/              SmoothScroll, ScrollManager, PageTransition, Footer, Seo, StickyBookingBar
+    layout/              SmoothScroll, ScrollManager, PageTransition, Footer, Seo, StickyBookingBar, RelatedPages
     location/            GoogleMap (keyless embed)
     navigation/          Header, MobileMenu
     ui/                  Button (magnetic), Picture (responsive), Eyebrow, Wordmark, BrandIcons
   data/                  property, gallery, reviews, navigation, images.generated
   hooks/                 useReducedMotion, useScrolled, useBodyLock, useMediaQuery
   lib/                   config (env), motion (GSAP setup), scroll (Lenis helpers), images, format, booking/
-  pages/                 Home, GalleryPage, BookPage, PrivacyPage, NotFound
+  pages/                 Home, AccommodationPage, HolidayHomePage, GalleryPage, ContactPage, BookPage, PrivacyPage, NotFound
   sections/              Hero, Intro, TheHouse, GalleryPreview, Amenities, Location, Atmosphere, FinalCta
   styles/global.css      Tailwind v4 theme tokens and base styles
 ```

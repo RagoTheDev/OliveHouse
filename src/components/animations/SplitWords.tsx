@@ -18,7 +18,7 @@ interface SplitWordsProps {
 
 /**
  * Splits text into words wrapped in overflow-hidden spans and slides them up.
- * Keeps the text as a single accessible string via aria-label.
+ * Words remain ordinary text in the DOM, so headings read naturally to crawlers and assistive tech.
  */
 export function SplitWords({
   text,
@@ -56,9 +56,8 @@ export function SplitWords({
 
   return (
     <Tag ref={ref} className={className}>
-      <span className="sr-only">{text}</span>
       {words.map((word, i) => (
-        <span key={`${word}-${i}`} className="split-line inline-block! align-top" aria-hidden="true">
+        <span key={`${word}-${i}`} className="split-line inline-block! align-top">
           <span className={`split-word ${italic.includes(i) ? "italic font-light" : ""}`}>
             {word}
             {i < words.length - 1 ? " " : ""}

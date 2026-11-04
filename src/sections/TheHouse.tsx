@@ -60,8 +60,8 @@ export function TheHouse() {
         {/* 01 — Living room: dominant image */}
         <article className="mt-20 md:mt-28" aria-label={living.name}>
           <ParallaxImage className="w-full" amount={10}>
-            <button type="button" onClick={() => openKey("living-room")} className="img-zoom block w-full" aria-label="Open photo: the living room">
-              <Picture image="living-room" sizes="100vw" className="aspect-[4/3] md:aspect-[21/9]" position="center 60%" style={{ aspectRatio: "auto" }} />
+            <button type="button" onClick={() => openKey("olive-house-kigamboni-living-room")} className="img-zoom block w-full" aria-label="Open photo: the living room">
+              <Picture image="olive-house-kigamboni-living-room" sizes="100vw" className="aspect-[4/3] md:aspect-[21/9]" position="center 60%" style={{ aspectRatio: "auto" }} />
             </button>
           </ParallaxImage>
           <div className="mt-8 grid gap-8 md:grid-cols-12 md:gap-8">

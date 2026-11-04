@@ -42,7 +42,7 @@ export function Hero() {
       <div ref={frame} className="absolute inset-0 overflow-hidden">
         <div ref={img} className="h-full w-full will-change-transform">
           <Picture
-            image="hero-exterior"
+            image="olive-house-kigamboni-exterior"
             priority
             sizes="100vw"
             className="h-full w-full"
@@ -69,17 +69,17 @@ export function Hero() {
             >
               {property.type} · {property.locality}, {property.city}
             </motion.p>
-            <h1 className="display-xl font-serif">
+            <p className="display-xl font-serif" aria-hidden="true">
               <SplitWords text={property.tagline} italic={[1]} immediate delay={1.1} stagger={0.08} />
-            </h1>
-            <motion.p
-              className="lede mt-6 max-w-md text-ivory/85 md:mt-8"
+            </p>
+            <motion.h1
+              className="lede mt-6 max-w-md font-sans font-normal text-ivory/90 md:mt-8"
               initial={reduce ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, delay: 1.7, ease }}
             >
               {property.subtitle}
-            </motion.p>
+            </motion.h1>
             <motion.div
               className="mt-8 flex flex-col gap-3 xs:flex-row xs:flex-wrap"
               initial={reduce ? false : { opacity: 0, y: 14 }}

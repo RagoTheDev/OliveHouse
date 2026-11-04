@@ -17,7 +17,7 @@ import type { Amenity, NearbyPlace, Room } from "@/types";
 export const property = {
   name: "Olive House",
   tagline: "A slower way to stay.",
-  subtitle: "Your peaceful coastal escape in Kigamboni, Dar es Salaam.",
+  subtitle: "Your comfortable holiday home in Kigamboni, Dar es Salaam.",
   type: "Entire home",
   locality: "Kigamboni",
   city: "Dar es Salaam",
@@ -47,7 +47,7 @@ export const rooms: Room[] = [
     tagline: "Where the afternoons go.",
     description:
       "A deep terracotta sofa, a live-edge timber table and a coffered ceiling with a slow ceiling fan. Light arrives through the tall window; the macramé curtain leads through to the kitchen.",
-    photos: ["living-room", "living-room-detail"],
+    photos: ["olive-house-kigamboni-living-room", "olive-house-kigamboni-living-room-detail"],
     facts: ["Sofa seating", "Ceiling fan", "Dedicated workspace"],
   },
   {
@@ -57,7 +57,7 @@ export const rooms: Room[] = [
     tagline: "Queen bed, sage linen, en-suite.",
     description:
       "Textured ochre walls, warm sconces and a hand-knotted macramé above the bed. The queen bed is dressed in soft green, and the en-suite bathroom opens directly off the room.",
-    photos: ["bedroom-one", "bedroom-one-detail"],
+    photos: ["olive-house-kigamboni-bedroom-one", "olive-house-kigamboni-bedroom-detail"],
     facts: ["Queen bed", "En-suite bathroom", "Wardrobe"],
   },
   {
@@ -67,7 +67,7 @@ export const rooms: Room[] = [
     tagline: "A quieter second room.",
     description:
       "A double bed in gingham, a solid timber wardrobe and its own bathroom. Simple, calm and comfortable for a friend, a colleague or a third guest.",
-    photos: ["bedroom-two", "bedroom-two-detail"],
+    photos: ["olive-house-kigamboni-bedroom-two", "olive-house-kigamboni-bedroom-two-detail"],
     facts: ["Double bed", "Private bathroom", "Wardrobe"],
   },
   {
@@ -77,7 +77,7 @@ export const rooms: Room[] = [
     tagline: "Cook as if you lived here.",
     description:
       "Honey-toned timber cabinets, a fridge, microwave and kettle, pots and pans, and a window over the sink that looks out to the garden greenery. Coffee is stocked.",
-    photos: ["kitchen"],
+    photos: ["olive-house-kigamboni-kitchen"],
     facts: ["Full kitchen", "Fridge & microwave", "Coffee & kettle"],
   },
   {
@@ -87,7 +87,7 @@ export const rooms: Room[] = [
     tagline: "Two, each with hot water.",
     description:
       "Both bedrooms have their own bathroom with a hot shower, bidet and Zanzibar-made bath essentials. Towels, soap and linens are provided.",
-    photos: ["bathroom", "bathroom-shower", "bathroom-vanity", "detail-shower-gel"],
+    photos: ["olive-house-kigamboni-bathroom", "olive-house-kigamboni-bathroom-shower", "olive-house-kigamboni-bathroom-vanity", "olive-house-kigamboni-bathroom-amenities"],
     facts: ["Hot water", "Shower gel & towels", "Bidet"],
   },
 ];

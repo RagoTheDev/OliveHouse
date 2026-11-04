@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AirbnbIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Mail } from "lucide-react";
-import { navItems, bookingPath } from "@/data/navigation";
+import { navItems, bookingPath, stayPages } from "@/data/navigation";
 import { property } from "@/data/property";
 import { config, hasEmail } from "@/lib/config";
 import { whatsappContactUrl } from "@/lib/booking/channels";
@@ -14,32 +14,46 @@ export function Footer() {
   return (
     <footer className="bg-olive-950 text-ivory">
       <div className="container-x grid gap-12 py-16 md:grid-cols-12 md:py-24">
-        <div className="md:col-span-5">
+        <div className="md:col-span-4">
           <Wordmark light size="lg" />
           <p className="mt-5 max-w-sm font-serif text-xl leading-snug text-sand/90">
             A peaceful home in {property.locality}, {property.city}, {property.country}. Two bedrooms, five minutes from the beach.
           </p>
         </div>
 
-        <nav aria-label="Footer" className="md:col-span-3">
-          <p className="eyebrow mb-5 text-sand/85">Explore</p>
-          <ul className="flex flex-col gap-3 text-[0.95rem]">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <Link to={item.to} className="link-underline">
-                  {item.label}
+        <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 md:col-span-5">
+          <div>
+            <p className="eyebrow mb-5 text-sand/85">Explore</p>
+            <ul className="flex flex-col gap-3 text-[0.95rem]">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <Link to={item.to} className="link-underline">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to={bookingPath} className="link-underline">
+                  Book Your Stay
                 </Link>
               </li>
-            ))}
-            <li>
-              <Link to={bookingPath} className="link-underline">
-                Book Your Stay
-              </Link>
-            </li>
-          </ul>
+            </ul>
+          </div>
+          <div>
+            <p className="eyebrow mb-5 text-sand/85">Stay</p>
+            <ul className="flex flex-col gap-3 text-[0.95rem]">
+              {stayPages.map((item) => (
+                <li key={item.to}>
+                  <Link to={item.to} className="link-underline">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </nav>
 
-        <div className="md:col-span-4">
+        <div className="md:col-span-3">
           <p className="eyebrow mb-5 text-sand/85">Get in touch</p>
           <ul className="flex flex-col gap-3 text-[0.95rem]">
             <li>

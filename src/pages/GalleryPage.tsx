@@ -28,19 +28,19 @@ export default function GalleryPage() {
 
   return (
     <>
-      <Seo title="Gallery" description="Every room of Olive House in Kigamboni, photographed as it is: living room, two bedrooms, kitchen, bathrooms and the veranda." />
+      <Seo absoluteTitle="Olive House Photos | Holiday Home in Dar es Salaam" description="Explore photos of Olive House, a holiday home in Kigamboni, Dar es Salaam: the bedrooms, living room, kitchen, bathrooms and exterior." />
       <section className="bg-ivory pb-24 pt-[calc(var(--header-h)+3rem)] md:pb-36 md:pt-[calc(var(--header-h)+5rem)]" aria-labelledby="gallery-page-heading">
         <div className="container-x">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
               <Reveal>
-                <Eyebrow>Gallery</Eyebrow>
+                <Eyebrow>Olive House photos · Dar es Salaam</Eyebrow>
               </Reveal>
               <Reveal as="h1" id="gallery-page-heading" className="display-lg mt-6" delay={0.05}>
                 The house, <span className="italic font-light">as it is.</span>
               </Reveal>
               <Reveal as="p" className="lede mt-5 max-w-xl text-charcoal/80" delay={0.1}>
-                {photos.length} photographs of Olive House. Nothing staged, nothing borrowed — tap any image to view it full screen.
+                {photos.length} Olive House interior and exterior photos: the bedrooms, living room, kitchen, bathrooms and veranda of this Dar es Salaam holiday home in Kigamboni. Nothing staged, nothing borrowed — tap any image to view it full screen.
               </Reveal>
             </div>
             <Reveal delay={0.15}>

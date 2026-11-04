@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath, URL } from "node:url";
 
-const ROUTES = ["/", "/gallery", "/book", "/privacy"];
+const ROUTES = ["/", "/accommodation-kigamboni", "/holiday-home-kigamboni", "/gallery", "/contact", "/book", "/privacy"];
 
 /**
  * Generates SEO files and injects geographic metadata
@@ -39,6 +39,7 @@ function seoFiles(
     name: "olive-seo-files",
 
     transformIndexHtml(html) {
+      html = html.replace(/https:\/\/olive\.lmjhouse\.com/g, base);
       if (!pin) return html;
 
       const geo =

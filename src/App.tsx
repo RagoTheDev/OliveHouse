@@ -10,6 +10,9 @@ import { StickyBookingBar } from "@/components/layout/StickyBookingBar";
 import Home from "@/pages/Home";
 
 const GalleryPage = lazy(() => import("@/pages/GalleryPage"));
+const AccommodationPage = lazy(() => import("@/pages/AccommodationPage"));
+const HolidayHomePage = lazy(() => import("@/pages/HolidayHomePage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
 const BookPage = lazy(() => import("@/pages/BookPage"));
 const PrivacyPage = lazy(() => import("@/pages/PrivacyPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -22,7 +25,10 @@ function Pages() {
         <Suspense fallback={<div className="min-h-[60svh]" aria-busy="true" />}>
           <Routes location={location}>
             <Route path="/" element={<Home />} />
+            <Route path="/accommodation-kigamboni" element={<AccommodationPage />} />
+            <Route path="/holiday-home-kigamboni" element={<HolidayHomePage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/book" element={<BookPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="*" element={<NotFound />} />
