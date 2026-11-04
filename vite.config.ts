@@ -25,7 +25,7 @@ function seoFiles(
         `  <url><loc>${base}${route}</loc><lastmod>${today}</lastmod><changefreq>${
           route === "/" ? "weekly" : "monthly"
         }</changefreq><priority>${
-          route === "/" ? "1.0" : "0.7"
+          route === "/" ? "1.0" : route === "/privacy" ? "0.3" : "0.8"
         }</priority></url>`
     ).join("\n") +
     "\n</urlset>\n";
